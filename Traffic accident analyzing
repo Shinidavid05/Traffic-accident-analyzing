@@ -1,0 +1,48 @@
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import folium
+from datetime import datetime
+
+Load the traffic accident dataset (replace with your file path or URL)
+url = "https://raw.githubusercontent.com/your-dataset-url.csv"
+df = pd.read_csv(url)
+
+Display basic information about the dataset
+df.info()
+
+Display first few rows
+df.head()
+```
+
+3. Data Preprocessing
+
+- *Handle missing values*.
+- *Convert data types* (e.g., datetime, categorical).
+- *Extract useful features* like hour of the day, day of the week, month, etc.
+
+```python
+Handle missing values (example)
+df.fillna({'Weather': 'Unknown', 'Road Condition': 'Unknown'}, inplace=True)
+
+Convert 'Date' and 'Time' columns to datetime
+df['Datetime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
+
+Extract time-related features (hour of the day, day of the week)
+df['Hour'] = df['Datetime'].dt.hour
+df['DayOfWeek'] = df['Datetime'].dt.day_name()
+df['Month'] = df['Datetime'].dt.month
+
+Display first few rows to verify changes
+df.head()
+```
+
+4. Exploratory Data Analysis (EDA)
+
+Now, let's analyze the relationships between accidents and contributing factors like weather, road conditions, and time of day.
+
+- *Accidents by Weather*:
+```python
+Count accidents by weather conditions
